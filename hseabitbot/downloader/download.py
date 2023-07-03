@@ -83,5 +83,5 @@ async def main() -> None:
         if hash_file(table) == file_hashes[program]:
             continue
         file_hashes[program] = hash_file(table)
-        msg = await parse.main(table)
-        await mailing.main(program, msg)
+        text = await parse.main(table)
+        await mailing.main(program, text)
