@@ -1,5 +1,5 @@
 import aiogram
-import requests
+import aiohttp
 import pandas
 import numpy
 
@@ -67,9 +67,11 @@ file_hashes = {
 
 
 async def download_file(url: str) -> numpy.ndarray:
-    file = requests.get(url)
-    pandas_transformed_file = pandas.read_excel(file.content, 'TDSheet')
-    return pandas_transformed_file.to_numpy()
+    async with aiohttp.ClientSession() as session:
+        async with session.get(url, ssl=False) as file_content:
+            file = await file_content.read()
+            pandas_transformed_file = pandas.read_excel(file, 'TDSheet')
+            return pandas_transformed_file.to_numpy()
 
 
 async def hash_file(table: numpy.ndarray) -> int:

@@ -3,3 +3,4 @@ numpy
 openpyxl
 apscheduler
 aiogram
+aiohttp
