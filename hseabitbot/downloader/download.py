@@ -1,9 +1,10 @@
+import aiogram
 import requests
 import pandas
 import numpy
 
-from ..parser import parse
-from ..bot import mailing
+from parser import parse
+from bot import mailing
 
 bachelor_programs = [
     'BD_Akter',
@@ -28,7 +29,6 @@ bachelor_programs = [
     'BD_Marketing',
     'BD_Math',
     'BD_Media',
-    'BD_ir',
     'BD_icef',
     'BD_MO',
     'BD_MB',
@@ -39,7 +39,6 @@ bachelor_programs = [
     'BD_AM',
     'BD_AMI',
     'BD_Data',
-    'BD_epa',
     'BD_SE',
     'BD_Psy',
     'BD_AD',
@@ -63,7 +62,8 @@ bachelor_programs = [
     'BD_India'
 ]
 
-file_hashes = dict()
+file_hashes = {
+}
 
 
 async def download_file(url: str) -> numpy.ndarray:
@@ -80,8 +80,9 @@ async def main() -> None:
     for program in bachelor_programs:
         url = f"https://enrol.hse.ru/storage/public_report_2023/moscow/Bachelors/{program}.xlsx"
         table = await download_file(url)
-        if hash_file(table) == file_hashes[program]:
+        print(file_hashes[program])
+        if await hash_file(table) == file_hashes[program]:
             continue
-        file_hashes[program] = hash_file(table)
+        file_hashes[program] = await hash_file(table)
         text = await parse.main(table)
         await mailing.main(program, text)
