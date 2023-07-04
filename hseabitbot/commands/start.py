@@ -1,6 +1,7 @@
 import asyncio
 import aiogram
 
+
 async def start_handler(event: aiogram.types.Message) -> None:
     await event.answer("""Привет!
 
