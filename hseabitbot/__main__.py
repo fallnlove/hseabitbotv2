@@ -2,6 +2,7 @@ import asyncio
 import aiogram
 from __init__ import __init__
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
 from downloader import download
 from utils import config
@@ -11,11 +12,12 @@ from bot import load_handlers
 async def main() -> None:
     hseabitbot = aiogram.Bot(token=config.token)
     try:
-        disp = aiogram.Dispatcher(bot=hseabitbot)
+        storage = MemoryStorage()
+        disp = aiogram.Dispatcher(bot=hseabitbot, storage=storage)
         await load_handlers.main(disp)
 
         schedule = AsyncIOScheduler()
-        schedule.add_job(download.main, 'cron', minute=f'5-59/5')
+        schedule.add_job(download.main, 'cron', minute=f'5-59/5', args=[hseabitbot])
         schedule.start()
 
         await disp.start_polling()
