@@ -31,6 +31,7 @@ async def main(bot: aiogram.Bot) -> None:
         table = await download_file(url)
         if await hash_file(table) == file_hashes[program]:
             continue
+        print(program)
         file_hashes[program] = await hash_file(table)
         text = await parse.main(table)
-        await mailing.main(program, text, bot)
+        await mailing.main(program, text, bot, table)

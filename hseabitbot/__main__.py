@@ -16,6 +16,8 @@ async def main() -> None:
         disp = aiogram.Dispatcher(bot=hseabitbot, storage=storage)
         await load_handlers.main(disp)
 
+        await download.main(hseabitbot)
+
         schedule = AsyncIOScheduler()
         schedule.add_job(download.main, 'cron', minute=f'5-59/5', args=[hseabitbot])
         schedule.start()
