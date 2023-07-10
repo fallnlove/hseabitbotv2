@@ -1,7 +1,7 @@
 import asyncio
 import aiogram
 
-from utils import config
+from ..utils import config
 
 
 async def answer_inline_query(inline_query: aiogram.types.InlineQuery) -> None:

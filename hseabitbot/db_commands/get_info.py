@@ -16,7 +16,7 @@ async def get_user_list(program: str) -> [int]:
 
 async def get_user_state_id(user_id: int) -> str:
     table_query = f"""SELECT state_id FROM main_table WHERE id = {user_id};"""
-    cursor, connection = await connect.make_connection("user/user_id.db")
+    cursor, connection = await connect.make_connection("hseabitbot/user/user_id.db")
     try:
         cursor.execute(table_query)
         content = cursor.fetchall()

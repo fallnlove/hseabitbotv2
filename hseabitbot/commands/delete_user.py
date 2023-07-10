@@ -4,8 +4,8 @@ import sqlite3
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
-from utils import message_states, inline_keyboard
-from db_commands import del_info
+from ..utils import message_states, inline_keyboard
+from ..db_commands import del_info
 
 
 async def get_program_name(event: aiogram.types.Message, state: FSMContext) -> None:

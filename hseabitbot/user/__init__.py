@@ -3,7 +3,7 @@ import sys
 
 sys.path.append("../")
 
-from utils import config
+from ..utils import config
 
 bachelor_programs = config.bachelor_programs
 

@@ -4,8 +4,8 @@ import sqlite3
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
-from utils import message_states
-from db_commands import add_info
+from ..utils import message_states
+from ..db_commands import add_info
 
 
 async def get_id(event: aiogram.types.Message, state: FSMContext) -> None:

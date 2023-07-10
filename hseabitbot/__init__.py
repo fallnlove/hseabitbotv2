@@ -1,8 +1,7 @@
-import downloader
-import parser
-
-from db_commands import add_info
-from utils import config
+from hseabitbot import downloader
+from hseabitbot import parser
+from hseabitbot.db_commands import add_info
+from hseabitbot.utils import config
 
 
 def __init__() -> None:

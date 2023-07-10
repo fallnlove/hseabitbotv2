@@ -3,9 +3,9 @@ import aiohttp
 import pandas
 import numpy
 
-from parser import parse
-from bot import mailing
-from utils import config
+from ..parser import parse
+from ..bot import mailing
+from ..utils import config
 
 bachelor_programs = config.bachelor_programs
 

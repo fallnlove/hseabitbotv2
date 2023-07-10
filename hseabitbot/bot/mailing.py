@@ -2,8 +2,8 @@ import asyncio
 import aiogram
 import numpy
 
-from db_commands import get_info
-from parser import parse
+from ..db_commands import get_info
+from ..parser import parse
 
 
 async def get_position(user_id: int, table: numpy.ndarray) -> int:

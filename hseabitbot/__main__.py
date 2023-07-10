@@ -1,12 +1,12 @@
 import asyncio
 import aiogram
-from __init__ import __init__
+from hseabitbot import __init__
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
-from downloader import download
-from utils import config
-from bot import load_handlers
+from hseabitbot.downloader import download
+from hseabitbot.utils import config
+from hseabitbot.bot import load_handlers
 
 
 async def main() -> None:

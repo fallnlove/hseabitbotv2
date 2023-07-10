@@ -1,8 +1,8 @@
 import aiogram
 
-from commands import start, add_user, set_user_id, delete_user
-from utils import message_states
-from inline_commands import inline_mode
+from ..commands import start, add_user, set_user_id, delete_user
+from ..utils import message_states
+from ..inline_commands import inline_mode
 
 
 async def main(disp: aiogram.Dispatcher) -> None:

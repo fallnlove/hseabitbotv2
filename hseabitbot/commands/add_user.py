@@ -4,8 +4,8 @@ import sqlite3
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
-from utils import message_states, inline_keyboard
-from db_commands import add_info
+from ..utils import message_states, inline_keyboard
+from ..db_commands import add_info
 
 
 async def get_program_name(event: aiogram.types.Message, state: FSMContext) -> None:
@@ -16,6 +16,8 @@ async def get_program_name(event: aiogram.types.Message, state: FSMContext) -> N
         await add_info.add_user_sending(program_name, user_id)
         await event.reply('Успешно добавлено!')
     except sqlite3.OperationalError:
+        await event.reply('Такой программы нет')
+    except KeyError:
         await event.reply('Такой программы нет')
     except sqlite3.IntegrityError:
         await event.reply('Ты уже подписался на эту рассылку')
