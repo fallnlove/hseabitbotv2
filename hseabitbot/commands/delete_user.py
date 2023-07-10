@@ -4,7 +4,7 @@ import sqlite3
 
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.dispatcher import FSMContext
-from utils import message_states
+from utils import message_states, inline_keyboard
 from db_commands import del_info
 
 
@@ -20,6 +20,10 @@ async def get_program_name(event: aiogram.types.Message, state: FSMContext) -> N
 
 
 async def delete_user(event: aiogram.types.Message, state: FSMContext) -> None:
-    await event.answer(f"""Отправьте название программы с помощью inline бота
-Введите @hseabitbot и название вашей программы, после чего выберите ее в списке""")
     await state.set_state(message_states.MessageStates.AskProgramDel)
+    await event.answer(f"""Нажмите на кнопку снизу, введите название программы и выберите ее в списке
+
+    Если инлайн режим не работает, то просто скопируйте название программы с сайта [ВШЭ](https://ba.hse.ru/base2023) \
+    и отправьте боту""",
+                       reply_markup=inline_keyboard.keyboard, parse_mode=aiogram.types.ParseMode.MARKDOWN,
+                       disable_web_page_preview=True)

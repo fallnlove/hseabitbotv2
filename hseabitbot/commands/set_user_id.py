@@ -15,7 +15,10 @@ async def get_id(event: aiogram.types.Message, state: FSMContext) -> None:
     try:
         await add_info.add_user_id(user_id, user_state_id)
         await event.reply('Успешно добавлено!')
-    except sqlite3.OperationalError or sqlite3.IntegrityError:
+    except sqlite3.OperationalError:
+        await add_info.change_user_id(user_id, user_state_id)
+        await event.reply('Успешно изменено!')
+    except sqlite3.IntegrityError:
         await add_info.change_user_id(user_id, user_state_id)
         await event.reply('Успешно изменено!')
 

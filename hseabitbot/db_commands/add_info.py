@@ -3,8 +3,11 @@ import sqlite3
 from . import connect
 
 
+program_id = {}
+
+
 async def add_user_sending(program: str, id: [str, int]) -> None:
-    table_query = f"INSERT INTO {program} (id)  VALUES  ({id})"
+    table_query = f"INSERT INTO {program_id[program]} (id)  VALUES  ({id})"
     cursor, connection = await connect.make_connection('user/sending.db')
     try:
         cursor.execute(table_query)
