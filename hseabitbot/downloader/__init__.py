@@ -1,7 +1,6 @@
-from utils import config
 from .download import file_hashes
 
 
-def __init__() -> None:
-    for program in config.bachelor_programs:
+def __init__(bachelor_programs: [str]) -> None:
+    for program in bachelor_programs:
         file_hashes[program] = ''
